@@ -21,7 +21,7 @@
 		.side_wrap{
 			border: 1px solid red;
 			width: 450px;
-			height: 1000px;
+			/*height: 1000px;*/
 			margin-right:25px; 
 		}
 		.side_picture{
@@ -42,12 +42,7 @@
 		}
 		
 
-		/* 소개내용 */
-		.content_wrap{
-			border: 1px solid blue;
-			width: 850px;
-			height: 1000px;
-		}
+		
 
 		.common_pannel{
 			border-radius: 2px;
@@ -62,7 +57,7 @@
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
-			height: 139px;
+			height: 165px;
 		}
 		.side_personal_group{
 			padding: 0 15px;
@@ -75,8 +70,8 @@
 			border-top: 1px solid #eee;
 			padding: 15px 0;
 		}
-		.nav{
-			margin-top: 25px;
+		.common_pannel{
+			margin-bottom: 25px;
 		}
 		.menu_title{
 			background-color: #c7c7ed;
@@ -92,10 +87,169 @@
 		.menu_title i {
 			width: 25px;
 		}
+
+		/* 소개내용 */
+		.content_wrap{
+			border: 1px solid blue;
+			width: 850px;
+		/*	height: 1000px;*/
+		}
+		.content_padding{
+			padding: 15px;
+		}
+		.bar_wrap{
+			margin-bottom: 20px;
+		}
+
+		.bar_border{
+			width: 500px;
+			height: 25px;
+			background-color: #f1f1f1;
+			overflow: hidden;
+			border-radius: 16px;
+		}
+		.bar_fill{
+			width:0;
+			height: 25px;
+			background-color: #9c96a3; 
+			padding:0 15px;
+			text-align: center;
+			line-height: 25px;
+			font-weight: bold;
+		}
+		.skill_title{
+			padding: 0px 0px 8px 8px;
+		}
+		.content_padding > .bar_wrap:last-child{
+			margin: 0;
+		}
+		.content_padding > table{
+			width: 100%;
+			border-collapse: collapse;
+		}
+		table, th, td{border: 1px solid #2F3138;}
+		th, td {padding: 5px;}
+		th {background-color: #F6D2D6; color:white;}
+		.edu_table tr:nth-child(even){
+			background-color: #f1f1f1;
+		}
+		.edu_table tr td:first-child, .edu_table tr td:last-child{
+			text-align: center;
+		}
+		.edu_table tr:hover{
+			background-color: #CCC;
+		}
+		.download_wrap{
+			width: 100%;
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+			padding: 25px;
+		}
+		.download_wrap div a{
+			padding: 8px 20px;
+			color: white;
+			border-radius: 5px; 
+			background-color: #F1B7C4;
+		}
+		.download_wrap div a:hover{
+			box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19);
+		}
+		.fix_btn{
+			position: fixed;
+			right: 50px;
+			color: #F1B7C4;
+			width: 65px;
+			height: 65px;
+			
+			border-radius: 50%;
+			/*자식을 가운데로 오게하려면*/
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			/*이렇게 하면 된다*/
+			font-size: 35px;
+			cursor: pointer;
+			box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19);
+		}
+		.fix_btn > i{
+			transition: transform .3s;
+		}
+		.fix_btn:hover > i { 
+			transform: scale(1.3); /*스케일은 사이즈가 커짐*/
+		}
+		.conn_btn{
+			bottom: 50px;
+			background-color: #E7E9EE;
+		}
+		.top_btn{
+			bottom: 115px;
+			background-color: #E7E9EE; 
+		}
+		.msg_wrap{
+			position:absolute;
+			bottom: 0;
+			right: 90px;
+			background-color: #E7E9EE;
+			
+			border-radius: 5px;
+			border: 1px solid #2F3138;
+			box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19);
+		}
+		.msg_wrap > .menu_title{
+			border-radius: 0;
+			background-color: #c7c7ed;
+		}
+		.note_wrap{	
+			padding: 15px;
+			color: #2F3138;
+			font-size: 15px;
+			width: 340px;
+		}
+		.send_info{
+			display: flex;
+			justify-content: space-betwwen;
+			align-items: center;
+		}
+		.send_info > input{
+			width: 150px;
+		}
+		.note_wrap > div{
+			margin-bottom: 5px;
+		}
+
 		
+
 	</style>
 </head>
 <body>
+	<div class="top_btn fix_btn"><i class="fas fa-chevron-circle-up"></i></div>
+	<div class="conn_btn fix_btn">
+		<div class="msg_wrap">
+			<div class="menu_title">
+				<i class="fas fa-envelope"></i>
+				<span>Message</span>
+			</div>
+				
+			<div class="note_wrap">
+				<div class="conn_note">Please contact me if you are interested</div>
+				<div class="send_info">
+					<input type="text" placeholder="Name">
+					<input type="text" placeholder="Email">
+				</div>
+				<div class="send_msg">
+					<input type="text" placeholder="Messege">
+				</div>
+				<div class="send_btn">
+					<a href="#"><i class="fas fa-rocket"></i> SEND MESSAGE</a>
+				</div>
+			</div>
+		
+		</div>
+		<i class="fas fa-envelope"></i>
+	</div>
+
+
 	<div class="wrap">
 		<aside>
 			<div class="side_wrap">
@@ -110,6 +264,7 @@
 				<div class="side_personal_group">
 						<div class="side_personal">
 								<div><i class="fas fa-briefcase"></i> web Programmer</div>
+								<div><i class="fas fa-briefcase"></i> highschool Graduatation</div>
 								<div><i class="fas fa-map-marker-alt"></i> Gwang-Ju,Korea</div>
 								<div><i class="far fa-envelope"></i> ehdtjs88kr@gmail.com</div>
 								<div><i class="fas fa-mobile-alt"></i> 010-2333-0462</div>
@@ -134,6 +289,9 @@
 						</div>
 					</div>
 				</div>
+
+
+
 					
 				</div>
 				<div class="common_pannel layer nav">
@@ -142,18 +300,143 @@
 					<ul>
 						<li><a href="#">Tech Skills</a></li>
 						<li><a href="#">Education</a></li>
-						<li><a href="#">License</a></li>
-						<li><a href="#">Contact</a></li>		
+						<li><a href="#">License</a></li>	
 					</ul>
+				</div>
+				
+				<div class="common_pannel layer nav">
+					<div class="menu_title">
+						<i class="fas fa-cloud-download-alt"></i>
+						<span>Download</span>
+					</div>
+					<div class="content_padding download_wrap">
+						<div class ="git_wrap">
+							<a href="https://github.com/O-Dong-Seon" target="blank">
+								Github<i class="fab fa-github-square"></i>
+							</a>
+						</div>								
+						<div class="resume_wrap">
+							<a href="#">
+								Resume<i class="fas fa-download"></i>
+							</a>
+						</div>
+						
+					</div>
 				</div>
 			</div>
 		</aside>
 
 		<section>
 			<div class="content_wrap">
+				<div class="common_pannel layer nav">
+					<div class="menu_title">
+						<i class="fas fa-code"></i>
+						<span>Tech Skiils</span>
+					</div>
+					<div class="content_padding">
+						
+						<div class="bar_wrap">
+							<div class="skill_title"><strong>Programming(JAVA,Python,Deppih)</strong></div>
+							<div class="bar_border"><div class="bar_fill">50%</div>
+							</div>
+						</div>
+						<div class="bar_wrap">
+							<div class="skill_title"><strong>Web publisching(HTML,CSS,Javascript,jQuery)</strong></div>
+							<div class="bar_border"><div class="bar_fill">80%</div>
+							</div>	
+						</div>
+						<div class="bar_wrap">
+							<div class="skill_title"><strong>Database&SQL(Oracle,MongoDB)</strong></div>
+							<div class="bar_border"><div class="bar_fill">60%</div>
+							</div>	
+						</div>
+						<div class="bar_wrap">
+							<div class="skill_title"><strong>Web Develop(Servlet,Spring)</strong></div>
+							<div class="bar_border"><div class="bar_fill">50%</div>
+							</div>	
+						</div>
+						<div class="bar_wrap">
+							<div class="skill_title"><strong>Version Managing Tool(GitHub)</strong></div>
+							<div class="bar_border"><div class="bar_fill">70%</div>
+							</div>	
+						</div>
+
+					</div>
+				</div>	
 				
+					<div class="common_pannel layer nav">
+					<div class="menu_title">
+						<i class="fas fa-pencil-alt"></i>
+						<span>Education</span>
+					</div>
+					<div class="content_padding">
+						<table class="edu_table">
+							<thead>
+								<tr><th>NO</th><th>Course name</th><th>Institution</th><th>period</th></tr>
+							</thead>
+							<tbody>
+								<tr><td>1</td><td>응용sw 엔지니어링 디지털 컨버젼스</td><td>한국경영원</td><td>2019.11.12~2020.6.12</td></tr>
+								<tr><td>2</td><td>응용sw 엔지니어링 디지털 컨버젼스</td><td>한국경영원</td><td>2019.11.12~2020.6.12</td></tr>
+								<tr><td>3</td><td>응용sw 엔지니어링 디지털 컨버젼스</td><td>한국경영원</td><td>2019.11.12~2020.6.12</td></tr>
+								<tr><td>4</td><td>응용sw 엔지니어링 디지털 컨버젼스</td><td>한국경영원</td><td>2019.11.12~2020.6.12</td></tr>
+								<tr><td>5</td><td>응용sw 엔지니어링 디지털 컨버젼스</td><td>한국경영원</td><td>2019.11.12~2020.6.12</td></tr>
+							</tbody>
+						</table>
+
+					</div>					
+				</div>
+
+				<div class="common_pannel layer nav">
+					<div class="menu_title">
+						<i class="fas fa-address-card"></i>
+						<span>License</span>
+					</div>
+					<div class="content_padding">
+						<table class="edu_table">
+							<thead>
+								<tr><th>NO</th><th>License name</th><th>Institution</th><th>period</th></tr>
+							</thead>
+							<tbody>
+								<tr><td>1</td><td>바리스타 자격증 2급</td><td></td><td>2019.11.12~2020.6.12</td></tr>
+								<tr><td>2</td><td>정보처리기능사</td><td></td><td>2018.7.28</td></tr>
+								<tr><td>3</td><td>운전면허증</td><td></td><td>2016.5.20</td></tr>
+							</tbody>
+						</table>
+
+					</div>					
+				</div>
+
 			</div>
 		</section>
 	</div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+	// $ = jQuery
+	// HTML 문서가 완료되면 동작 할 작업들
+	// Javascript에서는 함수를 만들 때 function(){}
+	// 이름이 없는 함수 = 익명함수 (재사용할 필요가 없음)
+
+	// for each문
+	// $ 제이쿼리를 나타냄
+	// find (선택지) 선택지를 찾아
+
+	//자바 스크립트는 모든 타입을 공통적으로 쓴다 (int든 string이든 val로 씀)
+	// 숫자 1000이 1초
+	$(document).ready(function (){ 
+		$('.bar_wrap').find('.bar_fill').each(function(){
+			var widthVal = $(this).text();
+			$(this).animate({width: widthVal}, '1000');
+		});
+	});
+	// $(document).ready(function(){
+	// 	$('').find('').each(function(){
+	// 		var  = $(this).text();
+
+	// 		)
+	// 	}
+	// }
+
+	
+</script>	
 </html>
