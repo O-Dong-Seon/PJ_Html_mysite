@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="uft-8">
+	<title>playtime</title>
+	<link rel="stylesheet" type="text/css" href="../../css/common.css">
+	<script src="https://kit.fontawesome.com/912e79718f.js" crossorigin="anonymous"></script>
+	<style type="text/css">
+		div.header_wrap{
+			width: 100%;
+			background-color: white;
+			box-shadow:0 0 1px 1px rgba(20,23,28,.1), 0 3px 1px 0 rgba(20,23,28,.1);
+			/*z-index: 999;*/
+		}
+		div.header_content{
+			width: 1400px;
+			margin: 0 auto;
+			height: 65px;
+			box-sizing: border-box;
+			border-left: 1px solid red;
+			border-right: 1px solid red;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+		.header_content_logo{}
+		.header_content_search {}
+		.header_content_search_group{
+			display: flex;
+			align-items: center;
+			background-color: #f2f3f5;
+			border-radius: 2px;
+		}
+		.header_content_search_input{
+			background-color: transparent; 
+			font-size: 13px;
+			border-color: transparent;
+			width: 220px
+			height: 44px;
+			border-radius: 2px;
+			padding: 10px 12px;
+			outline: none; /* input태그 Focus시 파랑테두리 */
+		}
+		.header_content_search_btn{
+			background-color: transparent;
+			border-color: transparent;
+			width:44px;
+			height: 44px; 
+			cursor: pointer;
+			color: #CACAE2;
+			border-top-right-radius: 2px;
+			border-bottom-right-radius: 2px;
+		}
+
+		.header_content_search_btn:hover {
+			background-color: #CACAE2;
+			color: white;
+		}
+		.header_content_nav{
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			width: 280px;
+		}
+		.header_content_nav > div{
+			/*border: 1px solid red;*/
+			padding: 10px 0;
+		}
+		.header_content_member{ /* 로그인,회원가입*/
+			/* width: 160px; */
+			display: flex; 
+			align-items: center;
+			justify-content: space-between;
+			flex-direction: row; /* default(생략가능) */
+		}
+		.header_content_member > div{
+			padding: 10px 0px 10px 3px;
+		}
+		.header_content_dropdown_group{
+			position: relative;
+		}
+		.header_content_dropdown_wrap:hover .header_dropdown {
+			display: block;
+		}
+		.header_content_dropdown_group > a{
+			display: inline-block;
+			padding: 12px 15px;
+			font-weight: 400;
+			border: 1px solid transparent;
+			border-radius: 2px;
+			height: 45px;
+			color: #506763;
+			line-height: 19px;
+		}
+
+		.header_content_dropdown_group:hover > div > a,
+		.header_content_member_cart:hover > a{
+			background-color: rgba(20,23,28,.05);
+			border-color: rgba(20,23,28,.05);
+		}
+		.header_content_member_cart > a{
+			display: inline-block;
+			width: 45px;
+			height: 45px;
+			border-radius: 50%;
+			color: #506763;
+			border: 1px solid transparent;
+			text-align: center;
+			padding: 12px;
+			line-height: 19px;
+		}
+
+		.header_content_logo_img{
+			max-width: 200px;
+			vertical-align: middle;
+		}
+		.header_content_logo_text{
+			font-size: 25px;
+			font-weight: bold;
+			vertical-align: middle;
+			font-family: 'Acme', sans-serif;
+		}
+		.header_dropdown_menu {
+			border-bottom-left-radius: 2px;
+			border-bottom-right-radius: 2px;
+			box-shadow: 0 4px 16px rgba(20,23,28,.25);
+			background-color: white; 
+			padding: 10px 0;
+		}
+		.header_dropdown_menu a {
+			width: 130px;
+			display: inline-block;
+			font-size: 15px;
+			color: #505763;
+			text-align: center;
+			padding: 5px 15px;
+			font-weight: 400;
+			position: relative;
+			z-index: 100;
+		}
+		.header_dropdown_menu a:hover{
+			color: #007791;
+			background-color: #f2f3f5;
+		}
+		.header_dropdown{
+			position: absolute;
+			top: 52px;
+			left: 0;
+			display: none;
+		}
+		.arrow{
+			position: absolute;
+			top: -7px;
+			left: 3px;
+			width: 15px;
+			height: 15px;
+			transform: rotate(45deg);
+			background-color: white;
+			border-color: transparent transparent #fff transparent; 
+			z-index: 99;
+		}
+
+
+		/* 모달 로그인 창 */
+		.modal_wrap{
+			position: fixed;
+			z-index: 1000;
+			background-color: rgba(0,0,0,0.4);
+			overflow: auto;
+			width: 100%;
+			height: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.modal_content{
+			width: 484px;
+			height: 623px;
+			background-color: white;
+			box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2),
+					0 4px 20px 0 rgba(0,0,0,0.19);
+			border-radius: 5px;
+			overflow: hidden;
+
+		}
+		.max-small{
+			width: 60px;
+			height: 60px;
+		}
+		.t_header{
+			min-height: 400px;
+			padding: 20px 10px 24px;
+			display: block;
+		}
+		.title_logo{
+			display: block;
+			height: 45px;
+			margin: 5px auto 8px;
+			width: 45px;
+		}
+		.header_title{
+			margin: 0px auto 18px;
+			width: 400px;
+			
+		}
+		.header_title > h3{
+			color: rgb(51,51,51);
+			font-size: 36px;
+			font-weight: 600;
+			-webkit-font-smoothing: antialiased;
+			letter-spacing: -1.2px;
+			margin: 0;
+			/*text-align: center;*/
+
+		}
+		.login_content input{			
+			vertical-align: middle;
+			border-radius: 4px;
+			border-style: solid;
+			border-width: 1px;
+			padding: 8px 14px;
+			min-height: 40px;
+			margin-bottom: 4px;
+			display: block;
+			
+					
+		}
+		
+		
+		
+		
+
+
+/*484 x 623*/
+		
+	</style>
+	
+</head>
+<body>
+	<div class="modal_wrap">
+		<div class="modal_content">
+			<div class="t_header">
+				<div class="title_logo"><img class='max-small' src='../../img/블래키.png'></div>
+				<div class="header_title"><h3>PlayTime에 오신 것을 환영합니다</h3></div>			
+				<form>
+					<div class="login_content">
+						<div class="email"><input type="text" placeholder="이메일"></div>
+						<div class="password"><input type="text" placeholder="비밀번호"></div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+
+	<header>
+		<div class="header_wrap">
+			<div class="header_content">
+				<div class="header_content_logo">
+					<a href="">
+					<img class="header_content_logo_img" src="../../img/playtime.png" alt="로고이미지">
+					<!-- <span class="header_content_logo_text">PlayTime</span> -->
+					</a>
+				</div>
+			
+			<div class="header_content_nav">
+
+				<div class="header_content_dropdown_group"><a href="#" class="magicline">할인</a></div>
+
+				<div class="header_content_dropdown_wrap">
+					<div class="header_content_dropdown_group">
+						<a href="#" class="magicline">인디</a>
+					<div class="header_dropdown">
+							<div class="arrow"></div>
+							<ul class="header_dropdown_menu">
+								<li><a href="#">액션</a></li>
+								<li><a href="#">공포</a></li>
+								<li><a href="#">RPG</a></li>
+								<li><a href="#">기타</a></li>
+						</ul>
+					</div>
+				</div>
+			  </div>
+
+				<div class="header_content_dropdown_wrap">
+					<div class="header_content_dropdown_group">
+						<a href="#" class="magicline">액션</a>
+					<div class="header_dropdown">
+							<div class="arrow"></div>
+							<ul class="header_dropdown_menu">
+								<li><a href="#">스토리</a></li>	
+								<li><a href="#">멀티플레이</a></li>
+								<li><a href="#">전략</a></li>
+						</ul>
+					</div>
+				</div>
+			  </div>
+				
+				<div class="header_content_dropdown_wrap">
+					<div class="header_content_dropdown_group">
+						<a href="#" class="magicline">공포</a>
+					<div class="header_dropdown">
+							<div class="arrow"></div>
+							<ul class="header_dropdown_menu">
+								<li><a href="#">스토리</a></li>
+								<li><a href="#">멀티플레이</a></li>
+								<li><a href="#">퍼즐</a></li>
+						</ul>
+					</div>
+				</div>
+			  </div>
+				
+				<div class="header_content_dropdown_wrap">
+					<div class="header_content_dropdown_group">
+						<a href="#" class="magicline">RPG</a>
+					<div class="header_dropdown">
+							<div class="arrow"></div>
+							<ul class="header_dropdown_menu">
+								<li><a href="#">스토리</a></li>
+								<li><a href="#">멀티플레이</a></li>
+								<li><a href="#">액션</a></li>
+
+						</ul>
+					</div>
+				</div>
+			  </div>
+			</div>
+			
+
+			<div class="header_content_member">
+				<div class="header_content_dropdown_wrap">
+					<div class="header_content_dropdown_group">
+						<a href="#">마이페이지</a>
+							<div class="header_dropdown">
+								<div class="arrow"></div>
+								<ul class="header_dropdown_menu">
+								<li><a href="#">구매내역</a></li>
+								<li><a href="#">회원정보수정</a></li>
+								<li><a href="#">위시리스트</a></li>
+								<li><a href="#">고객센터</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<div>
+					<div class="header_content_member_cart">
+						<a href="#"><i class="fas fa-cart-arrow-down"></i></a>
+					</div>
+			</div>	
+				<div><a href=""></a></div>
+				<div><button type="button" class="btn btn-basic">로그인</button></div>
+				<div><button type="button" class="btn btn-primary">회원가입</button></div>
+			</div>
+			</div>
+
+		</div>
+	</header>
+</body>
+</html>
