@@ -60,7 +60,7 @@
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			width: 280px;
+			width: 330px;
 		}
 		.header_content_nav > div{
 			/*border: 1px solid red;*/
@@ -113,6 +113,7 @@
 		.header_content_logo_img{
 			max-width: 200px;
 			vertical-align: middle;
+			display: block;
 		}
 		.header_content_logo_text{
 			font-size: 25px;
@@ -190,7 +191,7 @@
 		}
 		.t_header{
 			min-height: 400px;
-			padding: 20px 10px 24px;
+			padding: 20px 10px 0px;
 			display: block;
 		}
 		.title_logo{
@@ -277,6 +278,8 @@
 			color: rgb(51,51,51);
 		}
 		.sns_btn{
+			margin: 0 auto;
+			width: 268px;
 			position: relative;
 		}
 		.btn-common > h3{
@@ -331,10 +334,12 @@
 		.footer_private{
 			font-size: 12px;
 			font-weight: normal;
-			text-align: center;
+			/*text-align: center;*/
 			transition: opacity 0.2s linear 0s;
 			color: black;
-			width: 224px;
+			/*width: 224px;*/
+			width: 264px;
+			margin: 0 auto;
 
 		}
 		.footer_sign_up{
@@ -342,6 +347,7 @@
 			cursor: pointer;
 			margin-left: 5px;
 			font-size: 11px;
+			text-align: center;
 		}
 		.login_close{
 			position: absolute;
@@ -371,7 +377,7 @@
 			width: 30px;
 			text-align: center;
 		}
-
+		
 		
 		
 		
@@ -381,13 +387,12 @@
 	
 </head>
 <body>
-	<div class="modal_wrap">
-		
+	<div class="modal_wrap">		
 		<div class="modal_content">
 			<div class="login_close">
 			<button><i class="fas fa-times"></i></button>			
-		</div>
-			<div class="t_header">
+			</div>
+			<div class="t_header box">
 				<div class="title_logo"><img class='max-small' src='../../img/블래키.png'></div>
 				<div class="header_title"><h3>PlayTime에 오신 것을 환영합니다</h3></div>			
 				
@@ -409,22 +414,21 @@
 					</form>
 				</div>
 						<p class="else">또는</p>
-					</div>
-					<div class="sns_btn">
+			</div>
+					<div class="sns_btn box">
 						<div class="face_btn btn-common"><h3>Facebook으로 계속하기</h3></div>
 						<div class="google_btn btn-common"><h3>Google로 계속하기</h3></div>
 					</div>
+
 					<div class="footer">
-						<div class="footer_private">계속하면 서비스약관 및 개인정보
-						보호정책에 동의하는 것으로 간주됩니다</div>
-					<div class="line"></div>
-						
-					<div footer_sign_up>아직 Playtime에 가입하시지 않으셨나요?가입하기</div>
+						<div class="footer_private">계속하면 <a href="#">서비스약관</a> 및 <a href="#">개인정보
+						보호정책</a>에 동의하는 것으로 간주됩니다</div>
+						<div class="line"></div>						
+						<div class="footer_sign_up">아직 Playtime에 가입하시지 않으셨나요?가입하기</div>			
 					</div>
 				</div>
  			</div>
-		</div>
-	</div>
+	
 
 
 
@@ -433,8 +437,7 @@
 			<div class="header_content">
 				<div class="header_content_logo">
 					<a href="">
-					<img class="header_content_logo_img" src="../../img/playtime.png" alt="로고이미지">
-					<!-- <span class="header_content_logo_text">PlayTime</span> -->
+					<img class="header_content_logo_img" src="../../img/cat_playtime_big2.png" alt="로고이미지">					<!-- <span class="header_content_logo_text">PlayTime</span> -->
 					</a>
 				</div>
 			
@@ -577,12 +580,14 @@
 		$('.modal_wrap').css('display', 'flex');        
 	});
 
-	// Modal창의 X버튼을 ㄱ클릭하면 Modal창 close
+	// Modal창의 X버튼을 클릭하면 Modal창 close
 	$(document).on('click','.login_close', function(){
 		$('.modal_wrap').css('display','none');
 		$('.frm_login')[0].reset();
 		// $('.login_input').val('');
-		$()
+		$('.pw_eye').prev().attr('type','password');
+		$('.pw_eye').html('<i class="fas fa-eye-slash"></i>')
+					.css('color','#AAA');
 	})
 	//Login Modal창 암호 보이기 or 숨기기
 		// 값을 가져오는 방법
