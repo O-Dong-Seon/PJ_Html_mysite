@@ -2,6 +2,7 @@
 <html>
 <head>
 	<meta charset="uft-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>프로필</title>
 	<script src="https://kit.fontawesome.com/912e79718f.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="css/common.css">
@@ -9,8 +10,9 @@
 	<style type="text/css">
 		@import url('https://fonts.googleapis.com/css?family=Nanum+Pen+Script&display=swap');
 		.wrap{
-			border: 1px solid black;
-			max-width: 1400px;
+			/*border: 1px solid black;*/
+			max-width: 1400px; /* 어떤 사이즈던간에 max나min을 기준으로 사이즈 고정 */
+			min-width: 360px;
 			display: flex;
 			justify-content: center;
 			box-sizing: border-box;
@@ -102,7 +104,7 @@
 		}
 
 		.bar_border{
-			width: 500px;
+			width: 100%;
 			height: 25px;
 			background-color: #f1f1f1;
 			overflow: hidden;
@@ -146,7 +148,28 @@
 			align-items: center;
 			padding: 25px;
 		}
-		.download_wrap div a{
+		.download_wrap div{
+			transition: transform.3s;
+			border-radius: 5px;
+			overflow: hidden;
+		}
+
+		.download_wrap div button{
+			padding: 8px 20px;
+			color: white;
+			background-color: #F1B7C4;
+			border: none;
+			outline: none;
+			cursor: pointer;
+			width: 110px;
+			height: 35px;
+		}
+		.download_wrap div:hover {
+			transform: scale(1.2);
+			box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19);
+		}
+
+		/*.download_wrap div a{
 			padding: 8px 20px;
 			color: white;
 			border-radius: 5px; 
@@ -154,7 +177,7 @@
 		}
 		.download_wrap div a:hover{
 			box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19);
-		}
+		}*/
 		.fix_btn{
 			position: fixed;
 			right: 50px;
@@ -185,6 +208,7 @@
 		.top_btn{
 			bottom: 115px;
 			background-color: #E7E9EE; 
+			display: none;
 		}
 		.msg_wrap{
 			position:absolute;
@@ -234,7 +258,7 @@
 			justify-content: space-between;
 			align-items: center;
 		}
-		.send_btn > a{
+		.send_btn > button{
 			width :200px;
 			display: flex;
 			justify-content: center;
@@ -242,6 +266,9 @@
 			padding: 12px 15px;
 			border: 1px solid black;
 			border-radius: 5px;
+			outline: none;
+			background-color: white;
+			cursor: pointer;
 		}
 		.err_msg{
 			color: red;
@@ -261,7 +288,63 @@
 			height: 100%;
 			display: none;
 		}
+	/*
+		##Device = Most of the Smartphones Mobiles(portrait)
+		##Screen = B/w 320px to 479px
+		##Device = 대부분의 스마트폰 모바일 기기(세로)
+		##Screen = 320px에서 479px 사이	
+	*/
+	
+	@media(min-width:320px) and (max-width: 480px) {
+		.wrap {
+			width:100%;
+			flex-direction: column;
+			padding: 5px;
+		}
+		.side_wrap, .content_wrap {
+			width: 100%;
+			margin: 0 auto;
+		}	
+		.nev_menu{
+			display: none;
+		}
+		table tr th:last-child, table tr td:last-child{
+			display: none;
+		}
+		table td,table th{
+			font-size: 12px;
+		}
+		.fix_btn {
+			width: 50px;
+			height: 50px;
+			right: 20px;
+			font-size: 20px;
+		}
+		.top_btn{
+			bottom: 95px;
+		}
+		.content_padding {
+			padding: 10px;
+		}
+		.modal_wrap {
+			justify-content: center;
+			align-items: center;
+		}
+		.msg_wrap{
+			width: 95%;
+			position: static;
+		}
+		.note_wrap {
+			padding: 10px;
+			width: 100%
+		}	
+		.note_wrap input{
+			font-size: 12px;
+			height: 20px;
+		}
 
+	
+	}
 	</style>
 </head>
 <body>
@@ -275,27 +358,27 @@
 				<i class="fas fa-envelope"></i>
 				<span>Message</span>
 			</div>
-				
+				<form class="gform" method='post' action="https://script.google.com/macros/s/AKfycbxFb1hRcQsJrkcWz3VGcI54xMPdO4XUApCpIgDv/exec">
 			<div class="note_wrap">
 				<div class="conn_note">Please contact me if you are interested</div>
-				<div class="send_info">
-					
+				<div class="send_info">					
 					<div class="send_name">
-						<input type="text" class="send_input" placeholder="Name"></div>
+						<input type="text" class="send_input" placeholder="Name" name="name"></div>
 					<div class="area"></div>
 					<div class="send_email">
-						<input type="text" class="send_input" placeholder="Email"></div>
+						<input type="text" class="send_input" placeholder="Email" name="email"></div>
 
 					</div>
 				<div class="send_msg">
-					<input type="text" class="send_input" placeholder="Messege">
+					<input type="text" class="send_input" placeholder="Messege" name="message">
 				</div>
 				<div class="send_btn">
 					<span class="err_msg">Please enter a value:/</span>
-					<a href="#"><i class="far fa-paper-plane"></i>SEND MESSAGE</a>
+					<button type="submit"><i class="far fa-paper-plane"></i>SEND MESSAGE</button>
 				</div>
 			</div>
-		
+				</form>
+
 		</div>
 	</div>
 
@@ -318,6 +401,48 @@
 								<div><i class="far fa-envelope"></i> ehdtjs88kr@gmail.com</div>
 								<div><i class="fas fa-mobile-alt"></i> 010-2333-0462</div>
 							</div>
+					
+				</div>
+
+
+
+					
+				</div>
+				<div class="common_pannel layer nav nav_menu">
+					<div class="menu_title">
+						<i class="fas fa-align-left"></i><span>Menu</span></div>
+					<ul>
+						<li><a href="#">Tech Skills</a></li>
+						<li><a href="#">Education</a></li>
+						<li><a href="#">License</a></li>	
+					</ul>
+				</div>
+				
+				<div class="common_pannel layer nav">
+					<div class="menu_title">
+						<i class="fas fa-cloud-download-alt"></i>
+						<span>Download</span>
+					</div>
+					<div class="content_padding download_wrap">
+						<div class ="git_wrap">
+							<button class="git_btn">
+								Github<i class="fab fa-github-square"></i>
+							</button>
+						</div>								
+						<div class="resume_wrap">
+							<button class="resume_btn">
+								Resume<i class="fas fa-download"></i>
+							</button>
+						</div>
+						
+					</div>
+				</div>
+
+				<div class="common_pannel layer nav">
+					<div class="menu_title">
+						<i class="fas fa-cloud-download-alt"></i>
+						<span>SNS</span>
+					</div>
 					<div class="side_sns">
 						<div class = "middle">
 							<a class="snsbtn" href="#">
@@ -336,60 +461,6 @@
 								<i class="fab fa-youtube"></i>
 							</a>		
 						</div>
-					</div>
-				</div>
-
-
-
-					
-				</div>
-				<div class="common_pannel layer nav">
-					<div class="menu_title">
-						<i class="fas fa-align-left"></i><span>Menu</span></div>
-					<ul>
-						<li><a href="#">Tech Skills</a></li>
-						<li><a href="#">Education</a></li>
-						<li><a href="#">License</a></li>	
-					</ul>
-				</div>
-				
-				<div class="common_pannel layer nav">
-					<div class="menu_title">
-						<i class="fas fa-cloud-download-alt"></i>
-						<span>Download</span>
-					</div>
-					<div class="content_padding download_wrap">
-						<div class ="git_wrap">
-							<a href="https://github.com/O-Dong-Seon" target="blank">
-								Github<i class="fab fa-github-square"></i>
-							</a>
-						</div>								
-						<div class="resume_wrap">
-							<a href="#">
-								Resume<i class="fas fa-download"></i>
-							</a>
-						</div>
-						
-					</div>
-				</div>
-
-				<div class="common_pannel layer nav">
-					<div class="menu_title">
-						<i class="fas fa-cloud-download-alt"></i>
-						<span>SNS</span>
-					</div>
-					<div class="content_padding download_wrap">
-						<div class ="git_wrap">
-							<a href="https://github.com/O-Dong-Seon" target="blank">
-								Github<i class="fab fa-github-square"></i>
-							</a>
-						</div>								
-						<div class="resume_wrap">
-							<a href="#">
-								Resume<i class="fas fa-download"></i>
-							</a>
-						</div>
-						
 					</div>
 				</div>
 			</div>
@@ -497,6 +568,19 @@
 			var widthVal = $(this).text();
 			$(this).animate({width: widthVal}, '1000');
 		});
+	// Scroll TOP 버튼 생성 및 TOP으로 이동
+	$(window).scroll(function(){   // 스크롤이 조금이라도 움직이면
+		if(document.body.scrolltop > 80 || document.documentElement.scrollTop > 80){
+			$('.top_btn').fadeIn().css("display","flex");  
+			/* display를 잔상효과처럼 천천히 나오게 함 / fadeIn은 기본적으로 display가 block이 됨 */
+		}else{
+			$('.top_btn').fadeOut();  /*나오게 한 display를 잔상효과처럼 천천히 사라지게함*/
+		}
+	});
+		$('.top_btn').click(function(){
+			$('html, body').animate({scrollTop : 0}, 800);
+		})
+
 	});
 
 	// $표시는 제이쿼리를 나타내는 표시
@@ -538,7 +622,7 @@
 	});
 	// Java Script ===은 값+type === 값+type 을 비교할때 사용	
 	$(document).on('click', '.conn_btn',function(){
-		$('.modal_wrap').css('display', 'block');
+		$('.modal_wrap').css('display', 'flex');
 		$(this).css('display','none');
 	});
 
@@ -546,5 +630,15 @@
 		$('.modal_wrap').css('display', 'none');
 		$('.conn_btn').css('display','flex');
 	});
+
+	$(document).on('click','.resume_btn',function(){
+		// 이력서 버튼 클릭시 resume.hwp 다운로드
+		window.location.assign('resume/resume.txt')
+	});
+	$(document).on('click', '.git_btn',function(){
+		location.href='https://github.com/O-Dong-Seon';
+	});
+
+
 </script>	
 </html>
