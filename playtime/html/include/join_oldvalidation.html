@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>네이버 : 회원가입</title>
+	<title>join_oldvaliydation</title>
 	<link rel="icon" type="image/png" href="../img/naver/naversm.png">
 	<link rel="stylesheet" type="text/css" href="../../css/common.css">
 	<script src="https://kit.fontawesome.com/912e79718f.js" crossorigin="anonymous"></script>
@@ -247,7 +247,7 @@
 					 			<label for="pswd1">비밀번호</label> 			
 					 		</h3>
 					 		<span class="ps_box int_pass">
-					 			<input type="text" id="upw" name="upw" class="int">
+					 			<input type="password" id="upw" name="upw" class="int">
 					 			<span class="step_url"><span class="pw_lock"></span></span>
 					 		</span>
 					 		<span class="error_next_box">필수 정보입니다</span>
@@ -395,49 +395,65 @@
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="../../js/validation.js"></script>
 <script type="text/javascript">
 	$(function(){
-		
+		// 정규식이
+		var regEmpty = /\s/g; // 공백문자
+		var regEtc = /[~`!@#$%^&*()+=\|\\\{\}\[\]:";'<>.,?//]/g; //
+		var regID =/[^a-z0-9-_.]+/g; // 올바른 아이디 형식
 		// 유효성 체크
 		// id가 uid인 input태그의 값을 가져와서 체크	
 		$('#uid').keyup(function(){
-			// 사용자가 입력한 값의 좌우여백을 제거하고 id에 입력
-			var id = $(this).val().trim(); // 사용자가 입력한 값
-			// validation.js의 checkId로 유효성체크를 실행 후
-			// 결과를 result에 담음 (code, desc)
-			var result = joinValidate.checkId(id);
-			
-			// 유효셩체크 결과로 테두리색과 err메시지를 출력하는
-			// 함수 실행
-			console.log(result.code + "," + result.desc);
-
-			ckDesign(result.code, result.desc, 0 ,0);
-		});
-
-			// 비밀번호 유효성 체크
-			$('#upw').keyup(function(){
-				var pw = $.trim($(this).val());
-				var result = joinValidate.checkPw(pw);
-
-			ckDesign(result.code, result.desc, 1, 1);	
-		});
-	});		
-
-		function ckDesign(code, desc, line, msg) {
-			if(code != 0) {  	// 통과 X
-				$('.ps_box:eq('+line+')').css('border', ' 2px solid #d95339');
-				$('.error_next_box:eq('+msg+')').css('visibility', 'visible')
-									   .text(desc)
+			var id = $(this).val().trim(); 
+			// space 는 값이 있다고 판단을 하기때문에 length값을 입력해줘야한다
+			if(id == ''|| id.length == 0 ){ // 1.값이 있는지 없는지 체크
+				$(this).parent().css('border', ' 2px solid #d95339');
+				$('.error_next_box:eq(0)').css('visibility', 'visible')
+									   .text('필수 정보입니다.')
 									   .css('color', '#d95339');
 				return false;
-			} else {  // 통과 O
-				$('.ps_box:eq('+line+')').css('border', ' 2px solid #3885CA');
-				$('.error_next_box:eq('+msg+')').css('visibility', 'visible')
-									   .text(desc)
+			} else if(id.match(regEmpty)) { // 2.값사이에 공백이 있는지 체크
+				$(this).parent().css('border', ' 2px solid #d95339');
+				$(this).parent().next().css('visibility', 'visible')
+									   .text('공백 없이 입력해주세요.')
+									   .css('color', '#d95339');
+				return false;
+			} else if(id.match(regEtc)) {
+			 	$(this).parent().css('border', ' 2px solid #d95339'); // 3.특수문자 체크(-,_만 가능)
+				$(this).parent().next().css('visibility', 'visible')
+									   .text('특수문자는 대시(-), 언더바(_) 이용 가능합니다')
+									   .css('color', '#d95339');
+				return false;					   
+			} else if(id.match(regID)){ // 4.아이디 정규식 체크
+				$(this).parent().css('border', ' 2px solid #d95339'); 
+				$(this).parent().next().css('visibility', 'visible')
+									   .text('아이디는,영문,소문자,숫자,특수문자 일부만 사용 할 수 있습니다')
+									   .css('color', '#d95339');
+				return false;					   
+
+			} else if(id.charAt(0) == '-' || id.charAt(0) == '_'){ //5. 첫글자로 특수문자 사용불가
+				$(this).parent().css('border', ' 2px solid #d95339'); 
+				$(this).parent().next().css('visibility', 'visible')
+									   .text('첫 글자는 특수문자를 사용 할 수 없습니다')
+									   .css('color', '#d95339');
+				return false;					   
+			} else if(id.length < 5 || id.length > 20) { //6길이(5~20자이내)	
+				$(this).parent().css('border', ' 2px solid #d95339'); 
+				$(this).parent().next().css('visibility', 'visible')
+									   .text('아이디는 5자 이상~20자 이하여야 합니다')
+									   .css('color', '#d95339');
+				return false;
+					
+			} else {
+				$(this).parent().css('border', ' 2px solid #3885CA');
+				$(this).parent().next().css('visibility', 'visible')
+									   .text('멋진 아이디입니다')
 									   .css('color', '#3885CA');
-				return true;
+				return false;
 			}
-		}	
+		});
+	});
+
+	
 </script>
 </html>
