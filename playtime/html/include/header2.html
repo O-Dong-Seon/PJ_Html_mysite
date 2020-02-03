@@ -220,7 +220,7 @@
 			margin: 0px auto;
 			width: 268px;
 		}
-
+ogin_open
 		.login_t{
 			position: relative;
 			justify-content: center;
@@ -396,24 +396,25 @@
 			<div class="t_header box">
 				<div class="title_logo"><img class='max-small' src="../../img/블래키.png"></div>
 				<div class="header_title"><h3>PlayTime에 오신 것을 환영합니다</h3></div>			
-				
-				<div class="login_box">
-					<form>
-						<div class="login_content">
-							<div class="login_t" id="login_id"><input type="text" placeholder="이메일"></div>
-							<div class="login_t" id="login_pw">
-								<input type="text" placeholder="비밀번호">
-								<span class="pw_eye">
-									<i class="fas fa-eye-slash"></i>
-								</span>
+				<form>
+					<div class="login_box">
+						<form>
+							<div class="login_content">
+								<div class="login_t" id="login_id"><input type="email" placeholder="이메일" required></div>
+								<div class="login_t" id="login_pw">
+									<input type="text" placeholder="비밀번호" required minlength="6" maxlength="18">
+									<span class="pw_eye">
+										<i class="fas fa-eye-slash"></i>
+									</span>
+								</div>
 							</div>
-						</div>
-						<div class="pass_search">비밀번호를 잊으셨나요?</div>
-						<div class="login_btn">
-							<button>로그인</button>
-						</div>
-					</form>
-				</div>
+							<div class="pass_search">비밀번호를 잊으셨나요?</div>
+							<div class="login_btn">
+								<button type="submit">로그인</button>
+							</div>
+						</form>
+					</div>
+				</form>
 						<p class="else">또는</p>
 			</div>
 					<div class="sns_btn box">
